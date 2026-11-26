@@ -912,4 +912,10 @@ button {
     #febrero .fila--foto-derecha figure{
         width: 60% !important;
     }
+    .mes__titulo{
+        font-size: 3.8rem;
+    }
+    .persona__bio{
+        font-size: 1.1rem;
+    }
 }
