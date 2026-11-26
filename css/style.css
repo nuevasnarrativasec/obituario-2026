@@ -133,9 +133,7 @@ button {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 900px) {
-  .hero__fotos { display: none; }
-}
+
 
 .hero__contenido {
   position: relative;
@@ -209,6 +207,10 @@ button {
 
 .nav-mes--activo {
   border-color: var(--negro);
+}
+
+.nav-meses-movil {
+  display: none;
 }
 
 /* ===================== MESES ===================== */
@@ -391,7 +393,7 @@ button {
 
 /* ===================== RESPONSIVE ===================== */
 
-@media (max-width: 760px) {
+@media (max-width: 640px) {
   .fila--feature {
     grid-template-columns: 1fr;
   }
@@ -408,7 +410,81 @@ button {
   .foto--circulo,
   .foto--cuadrado {
     max-width: 320px;
+    width: 60%;
+    margin: 0 !important;
   }
+
+  /* diagramación móvil única para toda fila--feature (gris o blanca): foto arriba, texto abajo */
+  .fila--feature,
+  .fila--blanca {
+    display: flex !important;
+    flex-direction: column !important;
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 32px var(--pad) 40px !important;
+    gap: 50px !important;
+  }
+
+  .fila--feature figure,
+  .fila--feature .foto--feature {
+    order: 1 !important;
+    width: 60% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    aspect-ratio: 4 / 5;
+    margin: 0 !important;
+    display: block !important;
+    vertical-align: initial !important;
+  }
+
+  .fila--feature .foto--feature img {
+    min-height: 0;
+  }
+
+  .fila--feature .persona {
+    order: 2 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    display: flex !important;
+  }
+
+  .fila--feature .persona__nombre,
+  .fila--feature .persona__rol {
+    max-width: none !important;
+    margin-top: -10px !important;
+  }
+
+  .fila--feature .foto--feature img,
+  .foto--circulo img{
+    border-radius: 0;
+  }
+
+    .persona__nombre{
+        font-size: clamp(1.6rem, 2.6vw, 2rem);
+    }
+    #enero .fila--duo-cuadrado .duo-card:nth-child(1),
+    #marzo .fila--duo-cuadrado .duo-card:nth-child(1),
+    #julio .fila--duo-cuadrado .duo-card:nth-child(1),
+    #agosto .fila--duo-cuadrado .duo-card:nth-child(1),
+    #febrero .fila--duo-cuadrado .duo-card:nth-child(2),
+    #junio .fila--duo-cuadrado .duo-card:nth-child(2), 
+    #setiembre .fila--duo-cuadrado .duo-card:nth-child(2){
+        flex-direction: column !important;
+    }
+    #enero .fila--duo-cuadrado .duo-card:nth-child(1) .persona,
+    #febrero .fila--duo-cuadrado .duo-card:nth-child(2) .persona, 
+    #junio .fila--duo-cuadrado .duo-card:nth-child(2) .persona, 
+    #setiembre .fila--duo-cuadrado .duo-card:nth-child(2) .persona,
+    #marzo .fila--duo-cuadrado .duo-card:nth-child(1) .persona, #julio .fila--duo-cuadrado .duo-card:nth-child(1) .persona, #agosto .fila--duo-cuadrado .duo-card:nth-child(1) .persona{
+        margin-top: 20px !important;
+    }
+    .fila--gris .persona__nombre{
+        margin-bottom: 0;
+    }
+    .fila--feature .persona{
+        gap: 6px;
+    }
 }
 
 /* ===================== PIE ===================== */
@@ -762,3 +838,72 @@ button {
                 .ctn-footer ul li p span{
                     font-weight: 800;
                 }
+
+@media (max-width: 640px) {
+
+    .hero__fotos { 
+
+    }
+    .hf--si-1{
+        width: 25%;
+    }
+    .hf--si-2{
+        left: 60%;
+        width: 20%;
+    }
+    .hf--ii-3{
+        left: 80%;
+        top: 15%;
+        width: 20%;
+    }
+    .hf--id-1{
+        left: 81.5%;
+        top: 48%;
+        width: 19%;
+    }
+    .hf--ii-4{
+        left: 0;
+        width: 18%;
+    }
+    .hf--ii-5{
+        left: 5%;
+        top: 68%;
+        width: 19%;
+    }
+    .hf--id-2{
+        left: 67%;
+        top: 76%;
+        width: 18%;
+    }
+
+    .hf--sd-1,
+    .hf--sd-2,
+    .hf--sd-3,
+    .hf--ii-1,
+    .hf--ii-2,
+    .hf--id-3{
+        display: none;
+    }
+
+    .nav-meses {
+        display: none;
+    }
+
+    .nav-meses-movil {
+        display: block;
+        width: 100%;
+        max-width: 340px;
+        padding: 14px 22px;
+        border: 1px solid var(--negro);
+        border-radius: 999px;
+        background: #fff;
+        color: var(--negro);
+        font-family: 'IvyPresto Bold', Georgia, serif;
+        font-size: 1.2rem;
+        text-align: center;
+        text-align-last: center;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+}

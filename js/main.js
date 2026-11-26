@@ -4,6 +4,7 @@
   var DATA = window.OBITUARIO_DATA || [];
   var monthsRoot = document.getElementById('meses');
   var navRoot = document.getElementById('nav-meses');
+  var navMovilRoot = document.getElementById('nav-meses-movil');
 
   var featureSide = 0; // alterna izquierda/derecha entre TODAS las filas "feature" de la página
   var duoShape = 0; // alterna circulo/cuadrado entre TODAS las filas "duo" de la página
@@ -29,11 +30,20 @@
 
   function photoBlock(person, extraClass) {
     var fig = el('figure', 'foto ' + (extraClass || ''));
+    var picture = document.createElement('picture');
+
+    var source = document.createElement('source');
+    source.media = '(max-width: 760px)';
+    source.srcset = person.img.replace('img/', 'img/movil/');
+    picture.appendChild(source);
+
     var img = document.createElement('img');
     img.src = person.img;
     img.alt = person.name;
     img.loading = 'lazy';
-    fig.appendChild(img);
+    picture.appendChild(img);
+
+    fig.appendChild(picture);
     return fig;
   }
 
@@ -114,9 +124,26 @@
     return btn;
   }
 
+  function buildNavOption(month) {
+    var option = el('option', null, month.label);
+    option.value = month.id;
+    return option;
+  }
+
+  function setupNavMovil() {
+    if (!navMovilRoot) return;
+    navMovilRoot.addEventListener('change', function () {
+      var target = document.getElementById(navMovilRoot.value);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+
   function render() {
     DATA.forEach(function (month) {
       if (navRoot) navRoot.appendChild(buildNavButton(month));
+      if (navMovilRoot) navMovilRoot.appendChild(buildNavOption(month));
       if (monthsRoot) monthsRoot.appendChild(buildMonthSection(month));
     });
   }
@@ -133,6 +160,7 @@
             buttons.forEach(function (btn) {
               btn.classList.toggle('nav-mes--activo', btn.dataset.target === entry.target.id);
             });
+            if (navMovilRoot) navMovilRoot.value = entry.target.id;
           }
         });
       },
@@ -156,4 +184,5 @@
   render();
   setupScrollSpy();
   setupHeroScrollButton();
+  setupNavMovil();
 })();
