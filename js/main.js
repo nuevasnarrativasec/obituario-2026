@@ -40,7 +40,6 @@
     var img = document.createElement('img');
     img.src = person.img;
     img.alt = person.name;
-    img.loading = 'lazy';
     picture.appendChild(img);
 
     fig.appendChild(picture);
@@ -134,9 +133,11 @@
     if (!navMovilRoot) return;
     navMovilRoot.addEventListener('change', function () {
       var target = document.getElementById(navMovilRoot.value);
-      if (target) {
+      if (!target) return;
+      navMovilRoot.blur();
+      setTimeout(function () {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      }, 50);
     });
   }
 
