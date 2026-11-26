@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="css/style.css?v2">
+    <link rel="stylesheet" href="css/style.css?v4">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,14 +47,31 @@
             <button type="button" class="hero__flecha" aria-label="Ir al selector de meses">
                 <img src="img/hero/icon-flecha-bajar.png" alt="">
             </button>
-
-            <div class="hero__nav-meses">
-                <img class="hero__selecciona" src="img/hero/icon-selecciona-mes.png" alt="Selecciona un mes">
-                <nav id="nav-meses" class="nav-meses" aria-label="Selector de mes"></nav>
-                <select id="nav-meses-movil" class="nav-meses-movil" aria-label="Selector de mes"></select>
-            </div>
         </div>
     </header>
+
+    <div class="hero__nav-meses">
+        <img class="hero__selecciona" src="img/hero/icon-selecciona-mes.png" alt="Selecciona un mes">
+        <nav id="nav-meses" class="nav-meses" aria-label="Selector de mes"></nav>
+        <select id="nav-meses-movil" class="nav-meses-movil" aria-label="Selector de mes"></select>
+    </div>
+
+    <nav id="nav-sticky" class="nav-sticky" aria-label="Selector de mes" aria-hidden="true"></nav>
+
+    <button type="button" id="tab-meses" class="tab-meses" aria-controls="panel-meses" aria-expanded="false" aria-hidden="true" tabindex="-1">
+        <span class="tab-meses__texto">Meses</span>
+        <svg class="tab-meses__icono" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <div id="panel-meses" class="panel-meses" role="dialog" aria-modal="true" aria-label="Selector de mes" aria-hidden="true">
+        <div class="panel-meses__header">
+            <img class="panel-meses__selecciona" src="img/hero/icon-selecciona-mes.png" alt="Selecciona un mes">
+            <button type="button" class="panel-meses__cerrar" aria-label="Cerrar selector de mes">
+                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </button>
+        </div>
+        <ul id="panel-meses-lista" class="panel-meses__lista"></ul>
+    </div>
 
     <main id="meses"></main>
 

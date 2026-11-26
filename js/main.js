@@ -5,6 +5,10 @@
   var monthsRoot = document.getElementById('meses');
   var navRoot = document.getElementById('nav-meses');
   var navMovilRoot = document.getElementById('nav-meses-movil');
+  var navStickyRoot = document.getElementById('nav-sticky');
+  var tabMeses = document.getElementById('tab-meses');
+  var panelMeses = document.getElementById('panel-meses');
+  var panelLista = document.getElementById('panel-meses-lista');
 
   var featureSide = 0; // alterna izquierda/derecha entre TODAS las filas "feature" de la página
   var duoShape = 0; // alterna circulo/cuadrado entre TODAS las filas "duo" de la página
@@ -123,6 +127,54 @@
     return btn;
   }
 
+  function buildPanelItem(month) {
+    var li = el('li');
+    var btn = el('button', 'panel-meses__mes');
+    btn.type = 'button';
+    btn.dataset.target = month.id;
+    btn.textContent = month.label;
+    btn.addEventListener('click', function () {
+      var target = document.getElementById(month.id);
+      closePanel(false);
+      if (target) {
+        setTimeout(function () {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+      }
+    });
+    li.appendChild(btn);
+    return li;
+  }
+
+  function openPanel() {
+    if (!panelMeses) return;
+    panelMeses.classList.add('panel-meses--abierto');
+    panelMeses.setAttribute('aria-hidden', 'false');
+    tabMeses.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('panel-meses-abierto');
+    var cerrar = panelMeses.querySelector('.panel-meses__cerrar');
+    if (cerrar) cerrar.focus();
+  }
+
+  function closePanel(returnFocus) {
+    if (!panelMeses || !panelMeses.classList.contains('panel-meses--abierto')) return;
+    panelMeses.classList.remove('panel-meses--abierto');
+    panelMeses.setAttribute('aria-hidden', 'true');
+    tabMeses.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('panel-meses-abierto');
+    if (returnFocus !== false) tabMeses.focus();
+  }
+
+  function setupPanelMeses() {
+    if (!tabMeses || !panelMeses) return;
+    tabMeses.addEventListener('click', openPanel);
+    var cerrar = panelMeses.querySelector('.panel-meses__cerrar');
+    if (cerrar) cerrar.addEventListener('click', function () { closePanel(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closePanel();
+    });
+  }
+
   function buildNavOption(month) {
     var option = el('option', null, month.label);
     option.value = month.id;
@@ -142,16 +194,25 @@
   }
 
   function render() {
-    DATA.forEach(function (month) {
+    DATA.forEach(function (month, i) {
       if (navRoot) navRoot.appendChild(buildNavButton(month));
       if (navMovilRoot) navMovilRoot.appendChild(buildNavOption(month));
+      if (navStickyRoot) {
+        if (i > 0) {
+          var sep = el('span', 'nav-sticky__sep', '-');
+          sep.setAttribute('aria-hidden', 'true');
+          navStickyRoot.appendChild(sep);
+        }
+        navStickyRoot.appendChild(buildNavButton(month));
+      }
+      if (panelLista) panelLista.appendChild(buildPanelItem(month));
       if (monthsRoot) monthsRoot.appendChild(buildMonthSection(month));
     });
   }
 
   function setupScrollSpy() {
     var sections = Array.prototype.slice.call(document.querySelectorAll('.mes'));
-    var buttons = Array.prototype.slice.call(document.querySelectorAll('.nav-mes'));
+    var buttons = Array.prototype.slice.call(document.querySelectorAll('.nav-mes, .panel-meses__mes'));
     if (!sections.length || !('IntersectionObserver' in window)) return;
 
     var observer = new IntersectionObserver(
@@ -182,8 +243,32 @@
     });
   }
 
+  // Muestra el menú sticky cuando .hero__nav-meses sale del viewport por arriba
+  function setupNavSticky() {
+    var trigger = document.querySelector('.hero__nav-meses');
+    if (!trigger || !('IntersectionObserver' in window)) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      var entry = entries[0];
+      var visible = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+      if (navStickyRoot) {
+        navStickyRoot.classList.toggle('nav-sticky--visible', visible);
+        navStickyRoot.setAttribute('aria-hidden', visible ? 'false' : 'true');
+      }
+      if (tabMeses) {
+        tabMeses.classList.toggle('tab-meses--visible', visible);
+        tabMeses.setAttribute('aria-hidden', visible ? 'false' : 'true');
+        tabMeses.tabIndex = visible ? 0 : -1;
+      }
+    }, { threshold: 0 });
+
+    observer.observe(trigger);
+  }
+
   render();
   setupScrollSpy();
+  setupNavSticky();
+  setupPanelMeses();
   setupHeroScrollButton();
   setupNavMovil();
 })();
