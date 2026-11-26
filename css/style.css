@@ -650,6 +650,9 @@ button {
     .fila--feature .persona{
         gap: 6px;
     }
+    #meses{
+        margin-top: 50px;
+    }
 }
 
 /* ===================== PIE ===================== */
@@ -1055,6 +1058,10 @@ button {
     }
 
     .nav-meses {
+        display: none;
+    }
+
+    .hero__selecciona {
         display: none;
     }
 
