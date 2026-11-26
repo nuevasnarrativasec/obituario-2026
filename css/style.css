@@ -1,0 +1,764 @@
+* {
+  box-sizing: border-box;
+
+  font-display: swap;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  color: #141414;
+  font-family: 'IvyPresto Semibold', Georgia, serif;
+}
+
+@font-face {
+    font-family: 'IvyPresto Thin';
+    src: url('../fonts/IvyPrestoHeadline-Thin.woff2') format('woff2'),
+        url('../fonts/IvyPrestoHeadline-Thin.woff') format('woff');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'IvyPresto Headline Light';
+    src: url('../fonts/IvyPrestoHeadline-Light.woff2') format('woff2'),
+        url('../fonts/IvyPrestoHeadline-Light.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'IvyPresto Semibold';
+    src: url('../fonts/IvyPrestoText-SemiBold.woff2') format('woff2'),
+        url('../fonts/IvyPrestoText-SemiBold.woff') format('woff');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'IvyPresto Bold';
+    src: url('../fonts/IvyPrestoText-Bold.woff2') format('woff2'),
+        url('../fonts/IvyPrestoText-Bold.woff') format('woff');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'IvyOra Display Medium';
+    src: url('../fonts/IvyOraDisplay-Medium.woff2') format('woff2'),
+        url('../fonts/IvyOraDisplay-Medium.woff') format('woff');
+}
+
+
+:root {
+  --negro: #141414;
+  --gris-feature: #767676;
+  --gris-texto: #6b6b6b;
+  --gris-claro: #d8d8d8;
+  --max-width: 1360px;
+  --pad: clamp(20px, 4vw, 64px);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+/* ===================== HERO ===================== */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__fotos {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hf {
+  position: absolute;
+  width: 10%;
+  height: auto;
+  filter: grayscale(100%);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* columna izquierda - superior */
+.hf--si-1 { left: 2%;    top: 0;  width: 13%; animation: flyInTop 0.9s 0.1s cubic-bezier(.2,.7,.3,1) forwards; }
+.hf--si-2 { left: 16%;   top: 3%;  width: 8%;  animation: flyInTop 0.9s 0.25s cubic-bezier(.2,.7,.3,1) forwards; }
+
+/* columna derecha - superior */
+.hf--sd-1 { left: 56%;   top: 0%;  width: 5.5%; animation: flyInTop 0.9s 0.3s cubic-bezier(.2,.7,.3,1) forwards; }
+.hf--sd-2 { left: 62.5%; top: 0%;  width: 8%;   animation: flyInTop 0.9s 0.15s cubic-bezier(.2,.7,.3,1) forwards; }
+.hf--sd-3 { left: 87%;   top: 3%;  width: 14%;  animation: flyInTop 0.9s 0.35s cubic-bezier(.2,.7,.3,1) forwards; }
+.hf--sd-4 { left: 86%;   top: 21%; width: 15%;  animation: flyInTop 0.9s 0.5s cubic-bezier(.2,.7,.3,1) forwards; }
+
+/* columna izquierda - inferior */
+.hf--ii-1 { left: 0%;    top: 46%; width: 11%; animation: flyInBottom 0.9s 0.3s cubic-bezier(.2,.7,.3,1) forwards; }
+.hf--ii-2 { left: 0%;    top: 68%; width: 11%; animation: flyInBottom 0.9s 0.45s cubic-bezier(.2,.7,.3,1) forwards; }
+.hf--ii-3 { left: 13%;   top: 57%; width: 6%; animation: flyInBottom 0.9s 0.6s cubic-bezier(.2,.7,.3,1) forwards; }
+.hf--ii-4 { left: 12.5%; top: 81%; width: 6%;  animation: flyInBottom 0.9s 0.75s cubic-bezier(.2,.7,.3,1) forwards; }
+.hf--ii-5 { left: 19.5%; top: 74%; width: 7%; animation: flyInBottom 0.9s 0.65s cubic-bezier(.2,.7,.3,1) forwards; }
+
+/* columna derecha - inferior */
+.hf--id-1 { left: 86.5%; top: 38%; width: 9%;  animation: flyInBottom 0.9s 0.4s cubic-bezier(.2,.7,.3,1) forwards; }
+.hf--id-2 { left: 67%;   top: 70%; width: 10%; animation: flyInBottom 0.9s 0.7s cubic-bezier(.2,.7,.3,1) forwards; }
+.hf--id-3 { left: 84%;   top: 58%; width: 16%; animation: flyInBottom 0.9s 0.55s cubic-bezier(.2,.7,.3,1) forwards; }
+
+@keyframes flyInTop {
+  from { opacity: 0; transform: translateY(-70px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes flyInBottom {
+  from { opacity: 0; transform: translateY(70px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .hero__fotos { display: none; }
+}
+
+.hero__contenido {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  gap: clamp(20px, 4vw, 36px);
+}
+.hero__contenido p{
+    font: 1.8rem/1.1 'IvyPresto Headline Light';
+    font-style: italic;
+    margin: 0 auto;
+    margin-bottom: clamp(-35px, -3vw, -10px);
+}
+
+.hero__titulo {
+  margin: 0;
+  font-family: 'IvyPresto Bold';
+  font-weight: 700;
+  font-size: clamp(2.6rem, 7vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--negro);
+}
+
+.hero__flecha img {
+  width: clamp(40px, 5vw, 40px);
+  height: auto;
+  transition: transform 0.25s ease;
+}
+
+.hero__flecha:hover img {
+  transform: translateY(6px);
+}
+
+.hero__nav-meses {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.hero__selecciona {
+  height: 20px;
+  width: auto;
+}
+
+.nav-meses {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 28px;
+  max-width: 560px;
+  font-family: 'IvyOra Display Medium';
+}
+
+.nav-mes {
+  font-size: 1.05rem;
+  padding: 2px 0;
+  color: var(--negro);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-mes:hover {
+  border-color: rgba(20, 20, 20, 0.4);
+}
+
+.nav-mes--activo {
+  border-color: var(--negro);
+}
+
+/* ===================== MESES ===================== */
+
+.mes {
+}
+
+.mes__header {
+  max-width:1240px;
+  margin: 0 auto;
+  padding: clamp(32px, 6vw, 64px) var(--pad) clamp(16px, 3vw, 28px);
+}
+
+.mes__titulo {
+  margin: 0;
+  font-family: 'IvyPresto Bold', Georgia, serif;
+  font-size: clamp(3rem, 9vw, 5.5rem);
+  line-height: 1;
+  color: var(--negro);
+}
+
+/* ---- fila feature (una persona, foto grande) ---- */
+
+.fila--feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  gap: clamp(24px, 4vw, 56px);
+      padding: 60px 40px 0;
+}
+
+.fila--gris-fondo {
+  background: var(--gris-feature);
+  width: 100%;
+}
+
+.fila--gris {
+  color: #fff;
+}
+
+.fila--gris .persona__nombre,
+.fila--gris .persona__anios,
+.fila--gris .persona__rol,
+.fila--gris .persona__bio {
+  color: #fff;
+}
+
+.fila--gris .persona__fuente {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.fila--feature .foto--feature {
+  margin: 0;
+  width: 75%;
+  min-height: 280px;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.fila--feature .foto--feature img {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.fila--feature .persona {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  max-width: 480px;
+}
+
+.fila--foto-izquierda { grid-template-areas: "foto texto"; }
+.fila--foto-derecha { grid-template-areas: "texto foto"; }
+
+.fila--foto-izquierda .foto--feature { grid-area: foto; }
+.fila--foto-izquierda .persona { grid-area: texto; }
+.fila--foto-derecha .foto--feature { grid-area: foto; }
+.fila--foto-derecha .persona { grid-area: texto; }
+
+/* ---- fila duo (dos personas) ---- */
+
+.fila--duo {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  padding: clamp(24px, 5vw, 56px) var(--pad);
+}
+
+.duo-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.foto--circulo,
+.foto--cuadrado {
+  margin: 0;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.foto--circulo img,
+.foto--cuadrado img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.foto--circulo img {
+  border-radius: 50%;
+}
+
+.foto--cuadrado img {
+  border-radius: 12px;
+}
+
+.foto--cuadrado {
+  max-width: 420px;
+}
+
+.foto--circulo {
+  max-width: 420px;
+}
+
+/* ---- bloque de texto de una persona ---- */
+
+.persona {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.persona__nombre {
+  margin: 0;
+  font-family: 'IvyPresto Bold', Georgia, serif;
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  line-height: 1.15;
+  color: var(--negro);
+}
+
+.persona__anios {
+  margin: 0;
+  font-family: 'IvyPresto Semibold', Georgia, serif;
+  font-size: 1.3rem;
+  color: var(--negro);
+}
+
+.persona__rol {
+  margin: 0 0 4px;
+  font-family: 'IvyOra Display Medium';
+  font-size: 1.3rem;
+  color: var(--negro);
+}
+
+.persona__bio {
+  margin: 0;
+  font-family:'IvyOra Display Medium';
+  font-size: 0.92rem;
+  line-height: 1.55;
+  max-width: 44ch;
+}
+
+.fila--gris .persona__bio {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.persona__fuente {
+  margin: 4px 0 0;
+  font-family: Georgia, serif;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: #9a9a9a;
+}
+
+/* ===================== RESPONSIVE ===================== */
+
+@media (max-width: 760px) {
+  .fila--feature {
+    grid-template-columns: 1fr;
+  }
+  .fila--foto-izquierda,
+  .fila--foto-derecha {
+    grid-template-areas: "foto" "texto";
+  }
+  .fila--feature .persona {
+    max-width: none;
+  }
+  .fila--duo {
+    grid-template-columns: 1fr;
+  }
+  .foto--circulo,
+  .foto--cuadrado {
+    max-width: 320px;
+  }
+}
+
+/* ===================== PIE ===================== */
+
+.pie {
+  padding: 40px var(--pad) 60px;
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 0.8rem;
+  color: #9a9a9a;
+}
+
+.fila--gris .persona__nombre{
+    margin-bottom: 10px;
+}
+.fila--gris .persona__rol{
+    margin-top: 0;
+}
+.fila--gris .persona__bio{
+    margin-top: 10px;
+}
+
+#enero{
+      margin-bottom: 80px;
+}
+    #enero .fila--foto-izquierda,
+    #marzo .fila--foto-izquierda,
+    #abril .fila--foto-izquierda{
+        display: block;
+        text-align: left;
+    }
+    #enero .fila--feature,
+    #febrero .fila--feature,
+    #marzo .fila--feature,
+    #abril .fila--feature,
+    #junio .fila--feature,
+    #julio .fila--feature,
+    #agosto .fila--feature,
+    #setiembre .fila--feature,
+    #octubre .fila--feature,
+    #noviembre .fila--feature,
+    #diciembre .fila--feature{
+        padding: 60px 150px 0;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    #enero .fila--foto-izquierda figure,
+    #enero .fila--foto-izquierda .persona,
+    #marzo .fila--foto-izquierda figure,
+    #marzo .fila--foto-izquierda .persona,
+    #abril .fila--foto-izquierda figure,
+    #abril .fila--foto-izquierda .persona{
+        display: inline-block;
+        vertical-align: top;
+    }
+    #enero .fila--foto-izquierda figure,
+    #marzo .fila--foto-izquierda figure,
+    #abril .fila--foto-izquierda figure{
+        max-width: 400px;
+    }
+    #enero .fila--foto-izquierda .persona,
+    #marzo .fila--foto-izquierda .persona,
+    #abril .fila--foto-izquierda .persona{
+        margin: 100px 0 0 50px;
+        max-width: 250px;
+    }
+
+    #enero .fila--blanca,
+    #febrero .fila--blanca,
+    #marzo .fila--blanca,
+    #abril .fila--blanca,
+    #junio .fila--blanca,
+    #julio .fila--blanca,
+    #agosto .fila--blanca,
+    #setiembre .fila--blanca,
+    #octubre .fila--blanca{
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 60px 0 0;
+    }
+    #enero .fila--blanca .foto--feature{
+        width: 100%;
+    }
+    #enero .fila--blanca .persona__rol,
+    #febrero .fila--blanca .persona__rol{
+        margin-top: -12px;
+    }
+
+    #enero .fila--duo-circulo figure{
+        margin: 0 auto;
+        max-width: 100%;
+    }
+    #enero .duo-card,
+    #febrero .duo-card,
+    #marzo .duo-card,
+    #abril .duo-card,
+    #junio .duo-card,
+    #julio .duo-card,
+    #agosto .duo-card,
+    #setiembre .duo-card,
+    #octubre .duo-card{
+        gap: 32px;
+    }
+    #enero .duo-card .persona__rol,
+    #marzo .duo-card .persona__rol,
+    #junio .duo-card .persona__rol,
+    #julio .duo-card .persona__rol,
+    #agosto .duo-card .persona__rol,
+    #setiembre .duo-card .persona__rol,
+    #octubre .duo-card .persona__rol{
+        margin-top: -8px;
+        line-height: 1.1;
+    }
+
+    #enero .fila--duo-cuadrado,
+    #marzo .fila--duo-cuadrado,
+    #julio .fila--duo-cuadrado,
+    #agosto .fila--duo-cuadrado{
+        grid-template-columns: 1fr 0.4fr;
+        gap: 20px;
+    }
+
+    #enero .fila--duo-cuadrado .duo-card:nth-child(1),
+    #marzo .fila--duo-cuadrado .duo-card:nth-child(1),
+    #julio .fila--duo-cuadrado .duo-card:nth-child(1),
+    #agosto .fila--duo-cuadrado .duo-card:nth-child(1){
+        flex-direction: row-reverse;
+        align-items: start;
+        gap: 10px;
+    }
+    #marzo .fila--duo-cuadrado .duo-card:nth-child(1) .persona,
+    #julio .fila--duo-cuadrado .duo-card:nth-child(1) .persona,
+    #agosto .fila--duo-cuadrado .duo-card:nth-child(1) .persona{
+        margin-top: 150px;
+    }
+
+    #enero .fila--duo-cuadrado .duo-card:nth-child(1) .foto--cuadrado,
+    #marzo .fila--duo-cuadrado .duo-card:nth-child(1) .foto--cuadrado,
+    #julio .fila--duo-cuadrado .duo-card:nth-child(1) .foto--cuadrado,
+    #agosto .fila--duo-cuadrado .duo-card:nth-child(1) .foto--cuadrado{
+        flex: 0 0 56%;
+        max-width: none;
+        aspect-ratio: inherit;
+    }
+    #enero .fila--duo-cuadrado .duo-card:nth-child(1) .persona{
+        flex: 1;
+        margin-top: 240px;
+    }
+        #enero .fila--duo-cuadrado .duo-card:nth-child(1) .persona .persona__nombre{
+            max-width: 200px;
+        }
+
+#febrero{
+    margin-bottom: 80px;
+}   
+    #febrero .fila--feature,
+    #julio .fila--feature,
+    #setiembre .fila--feature{
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    #febrero .fila--feature .foto--feature,
+    #julio .fila--feature .foto--feature,
+    #setiembre .fila--feature .foto--feature,
+    #octubre .fila--feature .foto--feature{
+        width: 40%;
+    }
+    #febrero .fila--feature .persona .persona__rol,
+    #julio .fila--feature .persona .persona__rol,
+    #setiembre .fila--feature .persona .persona__rol,
+    #octubre .fila--feature .persona .persona__rol,
+    #noviembre .fila--feature .persona .persona__rol{
+        margin-top: -10px;
+    }
+
+    #febrero .fila--duo-cuadrado,
+    #junio .fila--duo-cuadrado,
+    #setiembre .fila--duo-cuadrado,
+    #octubre .fila--duo-cuadrado{
+        gap: 20px;
+        grid-template-columns: 1fr 2fr;
+    }
+
+    #febrero .foto--cuadrado,
+    #junio .foto--cuadrado,
+    #setiembre .foto--cuadrado,
+    #octubre .foto--cuadrado{
+        aspect-ratio: inherit;
+    }
+    #febrero .fila--duo-cuadrado .duo-card:nth-child(1){
+
+    }
+    #febrero .fila--duo-cuadrado .duo-card:nth-child(1) .foto--cuadrado,
+    #febrero .fila--duo-cuadrado .duo-card:nth-child(1) .persona{
+        max-width: 291px;
+    }
+
+    #febrero .fila--duo-cuadrado .duo-card:nth-child(2),
+    #junio .fila--duo-cuadrado .duo-card:nth-child(2),
+    #setiembre .fila--duo-cuadrado .duo-card:nth-child(2){
+        flex-direction: row;
+        align-items: start;
+        gap: 10px;
+    }
+    #febrero .fila--duo-cuadrado .duo-card:nth-child(2) .persona,
+    #junio .fila--duo-cuadrado .duo-card:nth-child(2) .persona,
+    #setiembre .fila--duo-cuadrado .duo-card:nth-child(2) .persona{
+        margin-top: 150px;
+    }
+    #febrero .fila--duo-cuadrado .duo-card:nth-child(2) .foto--cuadrado{
+
+    }
+
+    #febrero .fila--foto-derecha{
+
+    }
+    #febrero .fila--foto-derecha figure{
+       width: 70% !important;
+    }
+
+#marzo{
+      margin-bottom: 80px;
+}
+    #marzo .fila--foto-izquierda .persona{
+        max-width: 400px;
+    }
+    #marzo .fila--foto-derecha figure{
+        width: 100%;
+    }
+    #marzo .fila--foto-derecha .persona .persona__rol{
+        margin-top: -10px;
+    }
+
+    #marzo section:nth-child(6) figure{
+        max-width: 500px;
+    }
+    #marzo section:nth-child(6) .persona{
+        margin: 85px 0 0 20px;
+        max-width: 400px;
+    }
+
+#abril{
+      margin-bottom: 80px;
+}
+    #abril .fila--foto-izquierda .persona,
+    #junio .fila--foto-izquierda .persona{
+        max-width: 400px;
+    }
+    #abril .fila--feature,
+    #junio .fila--feature{
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+    #abril .fila--feature .foto--feature,
+    #junio .fila--feature .foto--feature,
+    #agosto .fila--feature .foto--feature,
+    #noviembre .fila--feature .foto--feature,
+    #diciembre .fila--feature .foto--feature{
+        max-width: 400px;
+        width: 40%;
+    }
+    #abril .fila--feature .persona__nombre,
+    #junio .fila--feature .persona__nombre,
+    #agosto .fila--feature .persona__nombre,
+    #noviembre .fila--feature .persona__nombre,
+    #diciembre .fila--feature .persona__nombre{
+        max-width: 70%;
+    }
+
+#junio{
+      margin-bottom: 80px;
+}
+    #junio .fila--feature,
+    #agosto .fila--feature,
+    #noviembre .fila--feature,
+    #diciembre .fila--feature{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+#julio{
+      margin-bottom: 80px;
+}
+    #julio .fila--feature {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+#agosto{
+      margin-bottom: 80px;
+}
+
+#setiembre{
+      margin-bottom: 80px;
+}
+    #setiembre .fila--feature,
+    #octubre .fila--feature{
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+    }
+
+#octubre{
+      margin-bottom: 80px;
+}
+    #octubre .fila--foto-izquierda{
+            flex-direction: row-reverse;
+    }
+
+#noviembre{
+      margin-bottom: 80px;
+}
+    #noviembre .fila--foto-derecha .foto--feature{
+        max-width: 550px;
+        width: 45%;
+    }
+    #noviembre .fila--foto-izquierda .foto--feature{
+        max-width: 500px;
+        width: 100%;
+    }
+
+#diciembre{
+      margin-bottom: 80px;
+}
+
+.main-footer{
+    background-color: #000;
+    padding: 40px 0;
+}
+    .ctn-footer{
+        text-align: center;
+    }
+        .ctn-footer img{
+            display: block;
+            margin: 10px auto 30px;
+            max-width: 140px;
+        }
+        .ctn-footer ul{
+            list-style: none;
+            padding: 0;
+        }
+            .ctn-footer ul li{
+                color: #fff;
+            }
+                .ctn-footer ul li p{
+                    font: 1rem/1.3 "Roboto", sans-serif;
+                    font-weight: 400;
+                }
+                .ctn-footer ul li p span{
+                    font-weight: 800;
+                }
