@@ -412,6 +412,7 @@ button {
     max-width: 320px;
     width: 60%;
     margin: 0 !important;
+    aspect-ratio: inherit !important;
   }
 
   /* diagramación móvil única para toda fila--feature (gris o blanca): foto arriba, texto abajo */
@@ -432,7 +433,7 @@ button {
     width: 60% !important;
     max-width: none !important;
     min-height: 0 !important;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: inherit !important;
     margin: 0 !important;
     display: block !important;
     vertical-align: initial !important;
@@ -458,6 +459,7 @@ button {
   .fila--feature .foto--feature img,
   .foto--circulo img{
     border-radius: 0;
+    object-fit: cover;
   }
 
     .persona__nombre{
