@@ -908,4 +908,8 @@ button {
         -webkit-appearance: none;
         -moz-appearance: none;
     }
+
+    #febrero .fila--foto-derecha figure{
+        width: 60% !important;
+    }
 }
