@@ -841,41 +841,42 @@ button {
                     font-weight: 800;
                 }
 
-@media (max-width: 640px) {
+@media only screen and (max-width: 640px) {
 
     .hero__fotos { 
 
     }
     .hf--si-1{
-        width: 25%;
+        width: 25% !important;
     }
     .hf--si-2{
-        left: 60%;
-        width: 20%;
+        left: 60% !important;
+        width: 20% !important;
     }
     .hf--ii-3{
-        left: 80%;
-        top: 15%;
-        width: 20%;
+        left: 80% !important;
+        top: 15% !important;
+        width: 20% !important;
+        display: block !important;
     }
     .hf--id-1{
-        left: 81.5%;
-        top: 48%;
-        width: 19%;
+        left: 81.5% !important;
+        top: 48% !important;
+        width: 19% !important;
     }
     .hf--ii-4{
-        left: 0;
-        width: 18%;
+        left: 0 !important;
+        width: 18% !important;
     }
     .hf--ii-5{
-        left: 5%;
-        top: 68%;
-        width: 19%;
+        left: 5% !important;
+        top: 68% !important;
+        width: 19% !important;
     }
     .hf--id-2{
-        left: 67%;
-        top: 76%;
-        width: 18%;
+        left: 67% !important;
+        top: 76% !important;
+        width: 18% !important;
     }
 
     .hf--sd-1,
@@ -918,4 +919,75 @@ button {
     .persona__bio{
         font-size: 1.1rem;
     }
+}
+
+@media only screen and (max-width: 768px) {
+
+    .hf--si-1{
+        width: 24%;
+    }
+    .hf--si-2{
+        left: 31%;
+        top: 7%;
+        width: 16%;
+    }
+    .hf--sd-1{
+        width: 12.5%;
+    }
+    .hf--sd-2{
+        left: 70.5%;
+        width: 13%;
+    }
+    .hf--sd-4{
+        top: 32%;
+        width: 26%;
+    }
+    .hf--id-1{
+        top: 51%;
+        width: 13%;
+    }
+    .hf--id-3{
+        left: 80%;
+        top: 79%;
+        width: 27%;
+    }
+    .hf--ii-1{
+        top: 51%;
+        width: 20%;
+    }
+    .hf--ii-4{
+        top: 88%;
+        width: 14%;
+    }
+    .hf--ii-5{
+        width: 15%;
+    }
+    .hf--ii-3{
+        display: none;
+    }
+    .hf--id-2{
+        left: 59%;
+        top: 83%;
+        width: 14%;
+    }
+    #enero .fila--feature, #febrero .fila--feature, #marzo .fila--feature, #abril .fila--feature, #junio .fila--feature, #julio .fila--feature, #agosto .fila--feature, #setiembre .fila--feature, #octubre .fila--feature, #noviembre .fila--feature, #diciembre .fila--feature{
+        padding: 60px 30px 0;
+    }
+    #marzo .fila--foto-izquierda figure{
+        max-width: 275px;
+    }
+    #enero .fila--blanca, #febrero .fila--blanca, #marzo .fila--blanca, #abril .fila--blanca, #junio .fila--blanca, #julio .fila--blanca, #agosto .fila--blanca, #setiembre .fila--blanca, #octubre .fila--blanca{
+        scale: .95;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+
+    .hf--id-2{
+        top: 82%;
+    }
+    #enero .fila--feature, #febrero .fila--feature, #marzo .fila--feature, #abril .fila--feature, #junio .fila--feature, #julio .fila--feature, #agosto .fila--feature, #setiembre .fila--feature, #octubre .fila--feature, #noviembre .fila--feature, #diciembre .fila--feature{
+        padding: 60px 45px 0;
+    }
+
 }
