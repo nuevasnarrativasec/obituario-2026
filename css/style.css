@@ -852,21 +852,23 @@ button {
     .hf--si-2{
         left: 60% !important;
         width: 20% !important;
+        top: 2% !important;
     }
     .hf--ii-3{
         left: 80% !important;
-        top: 15% !important;
+        top: 13% !important;
         width: 20% !important;
         display: block !important;
     }
     .hf--id-1{
         left: 81.5% !important;
-        top: 48% !important;
+        top: 68% !important;
         width: 19% !important;
     }
     .hf--ii-4{
         left: 0 !important;
-        width: 18% !important;
+        width: 27% !important;
+        top: 81% !important;
     }
     .hf--ii-5{
         left: 5% !important;
@@ -875,7 +877,7 @@ button {
     }
     .hf--id-2{
         left: 67% !important;
-        top: 76% !important;
+        top: 82% !important;
         width: 18% !important;
     }
 
@@ -884,7 +886,8 @@ button {
     .hf--sd-3,
     .hf--ii-1,
     .hf--ii-2,
-    .hf--id-3{
+    .hf--id-3,
+    .hf--sd-4{
         display: none;
     }
 
