@@ -162,6 +162,16 @@ button {
   color: var(--negro);
 }
 
+.hero__titulo-movil {
+  display: none;
+}
+
+.hero__titulo-anio {
+  display: inline-block;
+  font-size: 1.45em;
+  line-height: 0.95;
+}
+
 .hero__flecha img {
   width: clamp(40px, 5vw, 40px);
   height: auto;
@@ -653,6 +663,9 @@ button {
     #meses{
         margin-top: 50px;
     }
+    .hero__titulo-anio{
+        font-size: 2em;
+    }
 }
 
 /* ===================== PIE ===================== */
@@ -1065,17 +1078,26 @@ button {
         display: none;
     }
 
+    .hero__titulo-desktop {
+        display: none;
+    }
+
+    .hero__titulo-movil {
+        display: inline;
+    }
+
     .nav-meses-movil {
         display: block;
         width: fit-content;
         max-width: 340px;
-        padding: 14px 22px;
+        padding: 14px 56px 14px 46px;
         border: 1px solid var(--negro);
         border-radius: 999px;
-        background: #fff;
+        background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 14'%3E%3Cpath d='M1 1l11 11L23 1' fill='none' stroke='%23555' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 20px center / 22px 13px;
         color: var(--negro);
-        font-family: 'IvyPresto Bold', Georgia, serif;
-        font-size: 1.2rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        font-size: 1.15rem;
         text-align: center;
         text-align-last: center;
         appearance: none;
