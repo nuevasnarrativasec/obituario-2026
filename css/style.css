@@ -1105,6 +1105,11 @@ button {
         -moz-appearance: none;
     }
 
+    .nav-meses-movil option {
+        background: #fff;
+        color: var(--negro);
+    }
+
     #febrero .fila--foto-derecha figure{
         width: 60% !important;
     }
